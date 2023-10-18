@@ -1,25 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import { books } from "./Api";
+import { useEffect, useState } from "react";
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => { 
+  const [bookList, setBookList] = useState([]);
+
+  useEffect(() => {
+    fetchBooks()
+  }, []);
+
+  async function fetchBooks() {
+    const response = await books.index();
+      setBookList(response)
+  }
+
+
+  async function createBook() {
+
+    const name = "livro"
+    const description = "livro"
+    const medium_price = 10
+    const img_url = ""
+
+
+    const response = await books.create({name,description,medium_price,img_url});
+    console.log(response)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Ola Vinicius
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={createBook}>
+          Criar livro
+        </button>
+
+        {bookList.map((data) => (
+            <p key={data.id}>
+              
+              {data.name}
+            </p>
+        ))}
       </header>
     </div>
   );
 }
-
-export default App;
