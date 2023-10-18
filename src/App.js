@@ -13,7 +13,7 @@ export default () => {
 
   async function fetchBooks() {
     const response = await books.index();
-      setBookList(response)
+    setBookList(response)
   }
 
 
@@ -24,9 +24,9 @@ export default () => {
     const medium_price = 10
     const img_url = ""
 
-
+    //Tratar se foi sucesso ou erro
     const response = await books.create({name,description,medium_price,img_url});
-    console.log(response)
+    fetchBooks()
   }
 
   return (
