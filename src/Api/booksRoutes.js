@@ -1,10 +1,13 @@
-import { apiFetchPublicGet , apiFetchPublicPost} from "./methods";
+import { Get , Post} from "./methods";
 
 export const booksRoutes = {
     index: async () => {
-        return apiFetchPublicGet("books");
+        return Get("books");
     },
     create: async (data) => {
-        return apiFetchPublicPost("books", data);
+        return Post("books", data);
+    },
+    delete: async (id) => {
+        return Post(`books/${id}`, {},"DELETE");
     },
 };

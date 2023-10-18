@@ -1,6 +1,7 @@
 import { BASE_URL } from '../env';
+import qs from "qs";
 
-export const apiFetchPublicGet = async (endpoint) => {
+export const Get = async (endpoint) => {
     const res = await fetch(`${BASE_URL + endpoint}`,    {
         method: "GET",
         headers: {
@@ -15,10 +16,13 @@ export const apiFetchPublicGet = async (endpoint) => {
     return json;
 };
 
-export const apiFetchPublicPost = async (endpoint, body = {}, method = "POST") => {
-    console.log(body)
-    
-    const res = await fetch(BASE_URL + endpoint, {
+export const Post = async (endpoint, body = {}, method = "POST", url_param = false) => {    
+    let url = `${BASE_URL + endpoint}` 
+    if (url_param){
+        url += `?${qs.stringify(body)}`
+    }
+
+    const res = await fetch(url, {
         method: method,
         headers: {
             Accept: "application/json",

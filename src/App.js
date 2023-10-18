@@ -6,10 +6,17 @@ import { useEffect, useState } from "react";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => { 
   const [bookList, setBookList] = useState([]);
+  const [book, setBook] = useState({
+    name : "Livro 1",
+    description: "Descricao ",
+    medium_price : 0,
+    img_url: ""
+  });
 
-  useEffect(() => {
-    fetchBooks()
-  }, []);
+  function updateBook(obj){
+    console.log(obj)
+    setBook(obj)
+  }
 
   async function fetchBooks() {
     const response = await books.index();
@@ -18,23 +25,43 @@ export default () => {
 
 
   async function createBook() {
+    await books.create(book);
+    fetchBooks()
+  }
 
-    const name = "livro"
-    const description = "livro"
-    const medium_price = 10
-    const img_url = ""
-
-    //Tratar se foi sucesso ou erro
-    const response = await books.create({name,description,medium_price,img_url});
+  async function deleteBook(id) {
+    await books.delete(id);
     fetchBooks()
   }
 
   return (
     <div className="App">
-      <header className="App-header">
         <p>
           Ola Vinicius
         </p>
+        <form>
+          <label htmlFor="name_book">Nome do livro:</label><br/>
+          <input value={book.name || ''} type='text' id="name_book" name="name_book" 
+          onChange={(evet) =>{ 
+              setBook(prevState => (
+                {                  
+                    ...prevState,
+                    name: evet.target.value
+                }
+            ))
+          }} ></input><br/>
+          <label htmlFor="description_book">Descricao do livro:</label><br/>
+          <input value={book.description || ''} type='text' id="description_book" name="description_book"  
+            onChange={(evet) =>{ 
+              setBook(prevState => (
+                {                  
+                    ...prevState,
+                    description: evet.target.value
+                }
+            ))}}
+          ></input><br/>
+        </form>
+
         <button onClick={createBook}>
           Criar livro
         </button>
@@ -43,9 +70,10 @@ export default () => {
             <p key={data.id}>
               
               {data.name}
+
+              <button onClick={() => { deleteBook(data.id)}}>X</button>
             </p>
         ))}
-      </header>
     </div>
   );
 }
