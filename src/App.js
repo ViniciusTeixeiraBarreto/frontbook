@@ -8,11 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {List as BookList, CreateForm as BookForm} from "./Components/Book"
 import {List as AuthorList, CreateForm as AuthorForm} from "./Components/Author"
 
-
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default() => {
     const [bookData, setBookData] = useState([]);
@@ -29,21 +24,9 @@ export default() => {
         fetchAll();
     }, [])
 
-    const columns = [
-         {
-            dataField: "name",
-            text: "Nome do Livro",
-            sort: true
-        }, {
-            dataField: "authors[0].name",
-            text: "Autores"
-        }
-    ];
-
-
     return (
         <Container>
-            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
+            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                 <Tab eventKey="home" title="Livro">
                     <Row>
                         <BookForm callback={fetchAll}
@@ -67,16 +50,6 @@ export default() => {
                     Tab content for Contact
                 </Tab>
             </Tabs>
-            <Row>
-                <div className="App">
-                    <BootstrapTable bootstrap4 keyField="id"
-                        data={bookData}
-                        columns={columns}
-                        pagination={
-                            paginationFactory({sizePerPage: 5})
-                        }/>
-                </div>
-            </Row>
 
         </Container>
     );
