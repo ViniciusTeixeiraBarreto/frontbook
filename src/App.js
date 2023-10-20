@@ -5,8 +5,8 @@ import { Container, Row, Tab, Tabs } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { BookElement, FormCreateBook} from "./Components/Book"
-import { AuthorElement, FormCreateAuthor} from "./Components/Author"
+import { List as BookList, CreateForm as BookForm} from "./Components/Book"
+import { List as AuthorList, CreateForm as AuthorForm} from "./Components/Author"
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -30,18 +30,18 @@ export default () => {
       <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3" >
         <Tab eventKey="home" title="Livro">
           <Row>
-            <FormCreateBook callback={fetchAll} authorList={authorList}></FormCreateBook>
+            <BookForm callback={fetchAll} authorList={authorList}></BookForm>
           </Row>
           <Row>
-            <BookElement data={bookList} callback={fetchAll}></BookElement>
+            <BookList data={bookList} callback={fetchAll}></BookList>
           </Row>
         </Tab>
         <Tab eventKey="profile" title="Autor">
           <Row>
-            <FormCreateAuthor callback={fetchAll}></FormCreateAuthor>
+            <AuthorForm callback={fetchAll}></AuthorForm>
           </Row>
           <Row>
-            <AuthorElement data={authorList} callback={fetchAll}></AuthorElement>
+            <AuthorList data={authorList} callback={fetchAll}></AuthorList>
           </Row>
         </Tab>
         <Tab eventKey="contact" title="+18" disabled>

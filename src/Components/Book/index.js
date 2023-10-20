@@ -11,7 +11,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export const FormCreateBook = ({callback, authorList}) => {
+export const CreateForm = ({callback, authorList}) => {
     const [book, setBook] = useState({
         id: "",
         name: "Livro 1",
@@ -98,7 +98,7 @@ export const FormCreateBook = ({callback, authorList}) => {
     )
 }
 
-export const BookElement = ({data: booksList, callback}) => {
+export const List = ({data: booksList, callback}) => {
     async function remove(id) {
         await books.delete(id);
         callback();

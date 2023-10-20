@@ -11,7 +11,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export const AuthorElement = ({data: authorList, callback}) => {
+export const List = ({data: authorList, callback}) => {
     async function remove(id) {
         await authors.delete(id);
         callback();
@@ -50,7 +50,7 @@ export const AuthorElement = ({data: authorList, callback}) => {
     )
 }
 
-export const FormCreateAuthor = ({callback}) => {
+export const CreateForm = ({callback}) => {
     const [author, setAuthor] = useState({name: "Felipe"});
 
     async function createAuthor() {
