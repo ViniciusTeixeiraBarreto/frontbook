@@ -18,6 +18,8 @@ export const List = ({data: authorList, callback}) => {
     }
 
     return (
+        <div style={{marginTop: 20}}>
+        <h4>Lista de Autores</h4>
         <ListGroup style={
             {marginTop: 10}
         }>
@@ -47,6 +49,7 @@ export const List = ({data: authorList, callback}) => {
         }
             <br></br>
         </ListGroup>
+        </div>
     )
 }
 
@@ -72,7 +75,7 @@ export const CreateForm = ({callback}) => {
             }
         }>
             <Form.Group className="mb-3">
-                <Form.Label htmlFor="name_book">Nome do livro:</Form.Label>
+                <Form.Label htmlFor="name_book">Nome do Autor:</Form.Label>
                 <Form.Control type="text"
                     onKeyDown={handleKeyDown}
                     placeholder="Digite o nome do Livro"
@@ -90,7 +93,7 @@ export const CreateForm = ({callback}) => {
             </Form.Group>
         <Button variant="primary"
             onClick={createAuthor}>
-            Criar Author
+            Criar Autor
         </Button>
     </Form>
     )

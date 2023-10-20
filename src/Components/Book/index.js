@@ -105,6 +105,8 @@ export const List = ({data: booksList, callback}) => {
     }
 
     return (
+        <div style={{marginTop: 20}}>
+        <h4>Lista de Livros</h4>
         <ListGroup style={
             {marginTop: 10}
         }>
@@ -142,5 +144,6 @@ export const List = ({data: booksList, callback}) => {
             </ListGroup.Item>
             ))
         } </ListGroup>
+        </div>
     )
 }
