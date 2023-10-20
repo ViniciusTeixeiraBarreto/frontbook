@@ -29,33 +29,14 @@ export default() => {
         fetchAll();
     }, [])
 
-
-    function productsGenerator(quantity) {
-        const items = [];
-        for (let i = 0; i < quantity; i++) {
-            items.push({
-                id: i,
-                name: `Item name ${i}`,
-                price: 2100 + i
-            });
-        }
-        return items;
-    };
-
-    const products = productsGenerator(100);
-
     const columns = [
-        {
-            dataField: "id",
-            text: "Product ID",
-            sort: true
-        }, {
+         {
             dataField: "name",
-            text: "Product Name",
+            text: "Nome do Livro",
             sort: true
         }, {
-            dataField: "price",
-            text: "Product Price"
+            dataField: "authors[0].name",
+            text: "Autores"
         }
     ];
 
@@ -89,7 +70,7 @@ export default() => {
             <Row>
                 <div className="App">
                     <BootstrapTable bootstrap4 keyField="id"
-                        data={products}
+                        data={bookData}
                         columns={columns}
                         pagination={
                             paginationFactory({sizePerPage: 5})
